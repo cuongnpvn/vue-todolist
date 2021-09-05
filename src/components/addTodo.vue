@@ -1,48 +1,47 @@
 <template>
   <div class="container">
-      <div class="add">
-          <form @submit="onSubmit">
-          <input type="text" v-model="title" placeholder="add todo..." class="title">
-          <input type="submit" value="+" class="submit">
-          </form>
-      </div>
-      
+    <a-form @submit="handleSubmit" class="form">
+      <a-form-item :style="{ display: 'inline-block', width: '80%' }">
+        <a-input style="width: 100%" placeholder="add..." v-model="title" />
+      </a-form-item>
+      <a-form-item :style="{ display: 'inline-block', width: '5%' }">
+      </a-form-item>
+      <a-form-item :style="{ display: 'inline-block', width: '10%' }">
+        <a-button type="primary" html-type="submit">
+          +
+        </a-button>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
-    name: "AddTodo",
-    data() {
-        return {
-            title: ''
-        }
-    },
-    methods: {
-        ...mapActions(['addTodo']),
-        onSubmit(e) {
-            e.preventDefault()
-            this.addTodo(this.title);
-            this.title = '';
-        }
+  name: 'AddTodo',
+  data() {
+    return {
+      title: '',
     }
+  },
+  methods: {
+    ...mapActions(['addTodo']),
+    handleSubmit(e) {
+      e.preventDefault()
+      this.addTodo(this.title)
+      this.title = ''
+    },
+  },
 }
 </script>
 
 <style scoped>
-.add {
-    margin: 20px;
-    padding: 10px;
-}
-.title {
-    margin-left: 0px;
-    margin-right: 20px;
-    padding: 10px;
-    width: 500px;
-}
-.submit {
-    font-size: 20px;
+.container {
+  position: relative;
+  width: 400px;
+  height: 60px;
+  bottom: 90px;
+  border-color: black;
 }
 </style>
